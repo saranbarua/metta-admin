@@ -11,7 +11,6 @@ import Loader from "../../components/Loader/Loader";
 export default function Create({ handleCommitteeCreate }) {
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading } = useCommittee("");
-  // State for each field
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
   const [position, setPosition] = useState("");
