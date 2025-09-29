@@ -1,0 +1,8 @@
+.pagination > a {
+  padding: 5px 10px;
+  border: 1px solid blueviolet;
+  border-radius: 2px;
+}
+.pagination.active > a {
+  background-color: aquamarine;
+}
