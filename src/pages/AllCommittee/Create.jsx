@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { faMultiply, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dialog, Transition } from "@headlessui/react";
@@ -16,6 +16,8 @@ export default function Create({ handleCommitteeCreate }) {
   const [year, setYear] = useState("");
   const [position, setPosition] = useState("");
   const [image, setImage] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const closeModal = () => {
     setIsOpen(false);
@@ -25,13 +27,29 @@ export default function Create({ handleCommitteeCreate }) {
   const openModal = () => {
     setIsOpen(true);
     resetFields();
+    setErrorMsg("");
   };
 
   const resetFields = () => {
     setName("");
     setPosition("");
     setImage(null);
+    // don't clear year here; it will be defaulted when modal opens or when data loads
   };
+
+  // When committee years load, default the select to the first option if none selected
+  useEffect(() => {
+    if (data && data.length > 0 && !year) {
+      setYear(data[0]._id);
+    }
+  }, [data, year]);
+
+  // Also ensure when modal opens we have a default year (in case data already loaded)
+  useEffect(() => {
+    if (isOpen && data && data.length > 0) {
+      setYear((prev) => prev || data[0]._id);
+    }
+  }, [isOpen, data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,8 +60,25 @@ export default function Create({ handleCommitteeCreate }) {
     formData.append("position", position);
     formData.append("year", year);
     formData.append("image", image);
-    handleCommitteeCreate(formData); // Submit the data
-    closeModal(); // Close modal
+    console.log(formData);
+    // Submit and wait for result. Close modal only on success and surface errors.
+    (async () => {
+      try {
+        setIsSaving(true);
+        setErrorMsg("");
+        const result = await handleCommitteeCreate(formData);
+        if (result && result.success) {
+          setErrorMsg("");
+          closeModal();
+        } else {
+          setErrorMsg(result?.message || "Failed to create committee");
+        }
+      } catch (err) {
+        setErrorMsg(err?.message || "An unexpected error occurred");
+      } finally {
+        setIsSaving(false);
+      }
+    })();
   };
 
   return (
@@ -135,6 +170,11 @@ export default function Create({ handleCommitteeCreate }) {
                         </select>
                       )}
                       {/* Image */}
+                      {errorMsg && (
+                        <div className="text-sm text-red-600 mb-3">
+                          {errorMsg}
+                        </div>
+                      )}
                       <label className="block font-medium my-3">
                         Image<span className="text-red-600">*</span>
                       </label>
@@ -155,8 +195,12 @@ export default function Create({ handleCommitteeCreate }) {
                         >
                           Cancel
                         </button>
-                        <button type="submit" className="approve-btn">
-                          Save
+                        <button
+                          type="submit"
+                          className="approve-btn"
+                          disabled={isSaving}
+                        >
+                          {isSaving ? "Saving..." : "Save"}
                         </button>
                       </div>
                     </div>

@@ -71,11 +71,14 @@ const useAllCommittee = (searchQuery = "", limit = 3, page = 1) => {
       if (result?.success) {
         setNameCreateSuccess(true);
         toast.success("Committee Created Successfully");
+        return result;
       } else {
         toast.error(result?.message || "An error occurred");
+        return result;
       }
     } catch (error) {
       toast.error(error?.message || "Failed to create Committee");
+      return { success: false, message: error?.message };
     } finally {
       setIsLoading(false);
     }
