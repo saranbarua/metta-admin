@@ -17,11 +17,7 @@ import logo from "../../assets/images/logo.png";
 import useRouterData from "../../hooks/useRouterData";
 import { SubMenuDropdown } from "./SubMenuDropdown";
 import { useSelector } from "react-redux";
-import {
-  faBuilding,
-  faNewspaper,
-  faUser,
-} from "@fortawesome/free-regular-svg-icons";
+import { faBuilding, faNewspaper } from "@fortawesome/free-regular-svg-icons";
 
 export default function SidebarLayout() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -63,15 +59,7 @@ export default function SidebarLayout() {
             <FontAwesomeIcon icon={faBookmark} className="mx-3" />
             Dashboard
           </Link>
-          <Link
-            to="/users"
-            className={`text-gray-200 font-semibold  w-full ${
-              routeName === "/users" ? `bg-[#1D267D]` : ""
-            }  block py-1`}
-          >
-            <FontAwesomeIcon icon={faUser} className="mx-3" />
-            Members
-          </Link>
+
           <Link
             to="/gallery"
             className={`text-gray-200 font-semibold  w-full ${
@@ -81,24 +69,7 @@ export default function SidebarLayout() {
             <FontAwesomeIcon icon={faImage} className="mx-3" />
             Gallery
           </Link>
-          <Link
-            to="/notification"
-            className={`text-gray-200 font-semibold  w-full ${
-              routeName === "/notification" ? `bg-[#1D267D]` : ""
-            }  block py-1`}
-          >
-            <FontAwesomeIcon icon={faInfo} className="mx-3" />
-            Send Notification
-          </Link>
-          <Link
-            to="/all-fee"
-            className={`text-gray-200 font-semibold  w-full ${
-              routeName === "/all-fee" ? `bg-[#1D267D]` : ""
-            }  block py-1`}
-          >
-            <FontAwesomeIcon icon={faMoneyBill} className="mx-3" />
-            All Subscription
-          </Link>
+
           <SubMenuDropdown
             name={"News and events"}
             icon={faNewspaper}

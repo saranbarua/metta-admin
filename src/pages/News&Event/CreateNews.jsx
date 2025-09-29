@@ -160,14 +160,14 @@ export default function CreateNews({ handleNewsCreate }) {
                       {/* Time */}
                       <InputForm
                         label={"Description"}
-                        type={"text"}
                         value={description}
+                        type="textarea"
                         onInput={(e) => setDescription(e.target.value)}
                         required={"*"}
                       />
                       <InputForm
                         label={"SubHeading"}
-                        type={"text"}
+                        type={"textarea"}
                         value={subHeading}
                         onInput={(e) => setSubHeading(e.target.value)}
                         required={"*"}

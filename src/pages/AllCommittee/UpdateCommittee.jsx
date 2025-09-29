@@ -15,7 +15,7 @@ export default function UpdateCommittee({ Id, member, handleCommitteeUpdate }) {
   const [year, setYear] = useState(member?.year?._id || "");
   const [position, setPosition] = useState(member?.position || "");
   //image url added
-  const urlImg = `https://chattogram-somiti.makeupcoders.com${member?.image}`;
+  const urlImg = `http://backend.mettadhamma.com${member?.image}`;
   const [image, setImage] = useState(urlImg || null);
 
   // Update states when member prop changes

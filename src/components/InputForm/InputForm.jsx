@@ -9,6 +9,7 @@ export default function InputForm({
   onChange,
   onInput,
   className,
+  rows = 4,
 }) {
   return (
     <div className={`mb-4 ${className}`}>
@@ -19,15 +20,27 @@ export default function InputForm({
       <div
         className={`relative w-full p-2 border border-gray-300 rounded focus-within:border-blue-500`}
       >
-        <input
-          required={required}
-          type={type}
-          placeholder={placeholder}
-          defaultValue={value}
-          onChange={onChange}
-          onInput={onInput}
-          className={`w-full h-full block outline-none`}
-        />
+        {type === "textarea" ? (
+          <textarea
+            required={required}
+            placeholder={placeholder}
+            defaultValue={value}
+            onChange={onChange}
+            onInput={onInput}
+            rows={rows}
+            className="w-full h-full block outline-none resize-y"
+          />
+        ) : (
+          <input
+            required={required}
+            type={type}
+            placeholder={placeholder}
+            defaultValue={value}
+            onChange={onChange}
+            onInput={onInput}
+            className="w-full h-full block outline-none"
+          />
+        )}
       </div>
     </div>
   );
