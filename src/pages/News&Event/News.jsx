@@ -9,7 +9,6 @@ import Loader from "../../components/Loader/Loader";
 
 export default function News() {
   const { data, isLoading, handleNewsCreate, handleDelete } = useNews();
-
   const TABLE_HEAD = [
     "Index",
     "News Title",
@@ -83,12 +82,12 @@ export default function News() {
                               <img
                                 src={`${apiurl.imgUrl}${data?.image}`}
                                 alt={data.name || "Galllery Image"}
-                                className="w-[200px]  "
+                                className="w-[100px]  "
                                 crossOrigin="anonymous"
                                 loading="lazy"
-                                onError={(e) =>
-                                  (e.target.src = "/fallback-image.jpg")
-                                }
+                                // onError={(e) =>
+                                //   (e.target.src = "/fallback-image.jpg")
+                                // }
                               />
                             )}
                           </td>

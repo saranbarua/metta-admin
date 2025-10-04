@@ -5,6 +5,7 @@ import {
   faBookmark,
   faImage,
   faInfo,
+  faLink,
   faMoneyBill,
   faPeopleCarry,
   faTimes,
@@ -69,7 +70,15 @@ export default function SidebarLayout() {
             <FontAwesomeIcon icon={faImage} className="mx-3" />
             Gallery
           </Link>
-
+          <Link
+            to="/youtube"
+            className={`text-gray-200 font-semibold  w-full ${
+              routeName === "/youtube" ? `bg-[#1D267D]` : ""
+            }  block py-1`}
+          >
+            <FontAwesomeIcon icon={faLink} className="mx-3" />
+            Youtube
+          </Link>
           <SubMenuDropdown
             name={"News and events"}
             icon={faNewspaper}

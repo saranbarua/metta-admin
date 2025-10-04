@@ -9,6 +9,7 @@ import Event from "../pages/News&Event/Event";
 import CommitteeYear from "../pages/Committee/CommitteeYear";
 import AllCommittee from "../pages/AllCommittee/AllCommittee";
 import AdminList from "../pages/Home/AdminList";
+import AllYouTube from "../pages/Youtube/AllYoutube";
 export default function Routers() {
   return (
     <Routes>
@@ -16,6 +17,7 @@ export default function Routers() {
         <Route path="/news" element={<News />} />
         <Route path="/events" element={<Event />} />
         <Route path="/" element={<Dashoboard />} />
+        <Route path="/youtube" element={<AllYouTube />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/committee-year" element={<CommitteeYear />} />
         <Route path="/committee" element={<AllCommittee />} />
