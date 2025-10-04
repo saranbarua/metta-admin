@@ -49,7 +49,7 @@ export default function CreateVideo({ onCreated, onRefresh }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-xl rounded-xl shadow-lg">
             <div className="flex items-center justify-between border-b p-3">
               <h3 className="font-semibold">Add YouTube Video</h3>

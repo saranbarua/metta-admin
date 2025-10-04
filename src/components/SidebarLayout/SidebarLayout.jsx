@@ -18,7 +18,11 @@ import logo from "../../assets/images/logo.png";
 import useRouterData from "../../hooks/useRouterData";
 import { SubMenuDropdown } from "./SubMenuDropdown";
 import { useSelector } from "react-redux";
-import { faBuilding, faNewspaper } from "@fortawesome/free-regular-svg-icons";
+import {
+  faBuilding,
+  faNewspaper,
+  faNoteSticky,
+} from "@fortawesome/free-regular-svg-icons";
 
 export default function SidebarLayout() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -69,6 +73,15 @@ export default function SidebarLayout() {
           >
             <FontAwesomeIcon icon={faImage} className="mx-3" />
             Gallery
+          </Link>
+          <Link
+            to="/blogs"
+            className={`text-gray-200 font-semibold  w-full ${
+              routeName === "/blogs" ? `bg-[#1D267D]` : ""
+            }  block py-1`}
+          >
+            <FontAwesomeIcon icon={faNoteSticky} className="mx-3" />
+            Blogs
           </Link>
           <Link
             to="/youtube"
