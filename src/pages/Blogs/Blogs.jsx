@@ -4,6 +4,7 @@ import useBlogs from "../../hooks/useBlogs";
 import CreateBlog from "./CreateBlog";
 import UpdateBlog from "./UpdateBlog";
 import DeleteBlog from "./DeleteBlog";
+import apiurl from "../../apiurl/apiurl";
 
 export default function Blogs() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -92,6 +93,7 @@ export default function Blogs() {
                   "Author",
                   "Tags",
                   "Published",
+                  "Image",
                   "Created",
                   "Action",
                 ].map((h, i) => (
@@ -163,6 +165,17 @@ export default function Blogs() {
                         >
                           {row.isPublished ? "Published" : "Unpublished"}
                         </span>
+                      </td>
+                      <td className="p-2 border-b border-blue-gray-50 border-l-2 text-[14px]">
+                        {row && (
+                          <img
+                            src={`${apiurl.imgUrl}${row?.image}`}
+                            alt={row.name || "Galllery Image"}
+                            className="w-[100px]  "
+                            crossOrigin="anonymous"
+                            loading="lazy"
+                          />
+                        )}
                       </td>
                       <td className="p-2 text-center border-b border-l-2 text-[14px]">
                         {new Date(row?.createdAt).toLocaleDateString("en-US", {

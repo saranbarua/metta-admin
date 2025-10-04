@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import ReactQuill from "react-quill";
 
 export default function UpdateBlog({ row, onUpdate, onRefresh }) {
   const [open, setOpen] = useState(false);
@@ -119,13 +120,17 @@ export default function UpdateBlog({ row, onUpdate, onRefresh }) {
                 <label className="text-sm font-medium">
                   Content (Rich Text)
                 </label>
-                {/* Replace with your RTE */}
-                {/* <ReactQuill value={content} onChange={setContent} /> */}
-                <textarea
+
+                <ReactQuill
+                  className="min-h-40"
+                  value={content}
+                  onChange={setContent}
+                />
+                {/* <textarea
                   className="mt-1 w-full border p-2 rounded outline-none min-h-40"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                />
+                /> */}
               </div>
 
               <div className="grid md:grid-cols-3 gap-3">

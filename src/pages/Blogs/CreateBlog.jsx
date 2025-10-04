@@ -82,7 +82,7 @@ export default function CreateBlog({ onCreate, onRefresh }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[100]  bg-black/40 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100]  overflow-auto bg-black/40 flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg">
             <div className="flex items-center justify-between border-b p-3">
               <h3 className="font-semibold">Create Blog</h3>
@@ -116,7 +116,7 @@ export default function CreateBlog({ onCreate, onRefresh }) {
                 </div>
               </div>
 
-              <div>
+              <div className="max-h-60 overflow-auto">
                 <label className="text-sm font-medium">
                   Content (Rich Text)
                 </label>
