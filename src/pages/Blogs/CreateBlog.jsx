@@ -12,6 +12,8 @@ export default function CreateBlog({ onCreate, onRefresh }) {
   const [author, setAuthor] = useState("");
   const [isPublished, setIsPublished] = useState(false);
   const [imageFile, setImageFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
 
@@ -24,6 +26,7 @@ export default function CreateBlog({ onCreate, onRefresh }) {
     setIsPublished(false);
     setImageFile(null);
     setErr("");
+    setPreview(null);
   };
 
   const handleSubmit = async () => {
@@ -80,10 +83,9 @@ export default function CreateBlog({ onCreate, onRefresh }) {
       >
         Add Blog
       </button>
-
       {open && (
-        <div className="fixed inset-0 z-[100]  overflow-auto bg-black/40 flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg">
+        <div className="fixed inset-0 z-[100] pt-20 overflow-auto bg-black/60 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-5xl rounded-xl shadow-lg">
             <div className="flex items-center justify-between border-b p-3">
               <h3 className="font-semibold">Create Blog</h3>
               <button
@@ -152,16 +154,38 @@ export default function CreateBlog({ onCreate, onRefresh }) {
                 </label>
               </div>
 
-              <div>
-                <label className="text-sm font-medium">
-                  Featured Image (optional)
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="mt-1 w-full border p-2 rounded"
-                  onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                />
+              <div className="flex items-center gap-3">
+                <div>
+                  <label className="text-sm font-medium">
+                    Featured Image (optional)
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="mt-1 w-full border p-2 rounded"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setImageFile(file);
+                      if (file) {
+                        setPreview(URL.createObjectURL(file)); // 👈 প্রিভিউ এর state
+                      } else {
+                        setPreview(null);
+                      }
+                    }}
+                  />
+                </div>
+
+                {/* Preview section */}
+                {preview && (
+                  <div className="">
+                    <p className="text-xs text-gray-500 mb-1">Preview:</p>
+                    <img
+                      src={preview}
+                      alt="Preview"
+                      className="w-full h-40  object-contain rounded border"
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

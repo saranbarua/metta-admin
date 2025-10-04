@@ -82,8 +82,8 @@ export default function UpdateBlog({ row, onUpdate, onRefresh }) {
         Edit
       </button>
       {open && (
-        <div className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center  p-4">
-          <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg">
+        <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center  p-4">
+          <div className="bg-white w-full max-w-5xl rounded-xl shadow-lg">
             <div className="flex items-center justify-between border-b p-3">
               <h3 className="font-semibold">Update Blog</h3>
               <button
@@ -126,11 +126,6 @@ export default function UpdateBlog({ row, onUpdate, onRefresh }) {
                   value={content}
                   onChange={setContent}
                 />
-                {/* <textarea
-                  className="mt-1 w-full border p-2 rounded outline-none min-h-40"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                /> */}
               </div>
 
               <div className="grid md:grid-cols-3 gap-3">
