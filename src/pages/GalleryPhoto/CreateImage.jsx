@@ -19,13 +19,29 @@ export default function CreateImage({ handleImageCreate }) {
     setImage("");
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("image", image);
+  //   handleImageCreate(formData);
+  //   setIsOpen(false);
+  //   setImage("");
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!image) {
+      alert("Please select an image");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", image);
+
     handleImageCreate(formData);
+
     setIsOpen(false);
-    setImage("");
+    setImage(null);
   };
 
   return (
