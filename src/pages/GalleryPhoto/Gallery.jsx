@@ -50,51 +50,56 @@ export default function Gallery() {
               <tbody className="align-text-top">
                 {data.length > 0 ? (
                   <>
-                    {data.map((data, i) => (
-                      <tr key={i}>
-                        <td className="p-2 align-middle text-center border-b border-blue-gray-50 border-l-2 text-[14px]">
-                          {i + 1}
-                        </td>
-                        <td className="p-2 align-middle text-center border-b border-blue-gray-50 border-l-2 text-[14px]">
-                          {data && (
-                            <img
-                              src={`${apiurl.imgUrl}${data?.image}`}
-                              alt={data?.name || "Gallery Image"}
-                              className="w-full h-60 object-contain"
-                              crossOrigin="anonymous"
-                              loading="lazy"
-                              onError={(e) =>
-                                (e.target.src = "/fallback-image.jpg")
-                              }
+                    {/* {data.map((data, i) => ( */}
+                    {[...data]
+                      .sort(
+                        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+                      )
+                      .map((data, i) => (
+                        <tr key={i}>
+                          <td className="p-2 align-middle text-center border-b border-blue-gray-50 border-l-2 text-[14px]">
+                            {i + 1}
+                          </td>
+                          <td className="p-2 align-middle text-center border-b border-blue-gray-50 border-l-2 text-[14px]">
+                            {data && (
+                              <img
+                                src={`${apiurl.imgUrl}${data?.image}`}
+                                alt={data?.name || "Gallery Image"}
+                                className="w-full h-60 object-contain"
+                                crossOrigin="anonymous"
+                                loading="lazy"
+                                onError={(e) =>
+                                  (e.target.src = "/fallback-image.jpg")
+                                }
+                              />
+                            )}
+                          </td>
+                          <td className="p-2 border-b border-blue-gray-50 align-middle text-center border-l-2 text-[14px]">
+                            {new Date(data?.createdAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              },
+                            )}{" "}
+                            {new Date(data?.createdAt).toLocaleTimeString(
+                              "en-US",
+                              {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit",
+                              },
+                            )}
+                          </td>
+                          <td className="align-middle p-2 border-b border-blue-gray-50 border-l-2 text-[14px]">
+                            <DeleteModal
+                              Id={data?._id}
+                              handleReject={handleDelete}
                             />
-                          )}
-                        </td>
-                        <td className="p-2 border-b border-blue-gray-50 align-middle text-center border-l-2 text-[14px]">
-                          {new Date(data?.createdAt).toLocaleDateString(
-                            "en-US",
-                            {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            }
-                          )}{" "}
-                          {new Date(data?.createdAt).toLocaleTimeString(
-                            "en-US",
-                            {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                              second: "2-digit",
-                            }
-                          )}
-                        </td>
-                        <td className="align-middle p-2 border-b border-blue-gray-50 border-l-2 text-[14px]">
-                          <DeleteModal
-                            Id={data?._id}
-                            handleReject={handleDelete}
-                          />
-                        </td>
-                      </tr>
-                    ))}
+                          </td>
+                        </tr>
+                      ))}
                   </>
                 ) : (
                   <tr>
