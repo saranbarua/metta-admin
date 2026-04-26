@@ -60,7 +60,7 @@ export default function UpdateBlog({ row, onUpdate, onRefresh }) {
             tags: tagsArr,
             isPublished,
           },
-          false
+          false,
         );
       }
 
@@ -83,7 +83,8 @@ export default function UpdateBlog({ row, onUpdate, onRefresh }) {
       </button>
       {open && (
         <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center  p-4">
-          <div className="bg-white w-full max-w-5xl rounded-xl shadow-lg">
+          {/* <div className="bg-white w-full max-w-5xl rounded-xl shadow-lg"> */}
+          <div className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl shadow-lg">
             <div className="flex items-center justify-between border-b p-3">
               <h3 className="font-semibold">Update Blog</h3>
               <button
