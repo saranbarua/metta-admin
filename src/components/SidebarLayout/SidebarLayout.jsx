@@ -34,7 +34,7 @@ export default function SidebarLayout() {
     <section className="w-full mx-auto">
       <div className="flex">
         <div
-          className={`bg-[#4a5e6b] h-screen ${
+          className={`bg-[#0d1117] h-screen ${
             showSidebar
               ? "lg:w-[25%] w-[80%] lg:static z-20 fixed left-0"
               : "hidden lg:w-[25%] lg:block"
